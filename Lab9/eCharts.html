@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>eCharts</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
+</head>
+
+<body>
+  <!-- Prepare a DOM with a defined width and height for ECharts -->
+  <div id="main" style="width: 900px;height:600px;"></div>
+
+  <script type="text/javascript">
+
+    let options = {
+      title: { text: 'Fake Store Categories' },
+      xAxis: {
+        data: []
+      },
+      yAxis: {},
+      series: [{
+        name: '# products under each category',
+        type: 'bar',
+        data: []
+      }]
+    };
+  
+  let categoryArry;
+
+
+  fetch('https://fakestoreapi.com/products')
+    .then((response) => response.json())
+    .then((json) => {
+      let jsonMap = json.map(item => item.category)
+      categoryArry = Array.from(new Set(jsonMap))
+      options.xAxis.data = categoryArry
+
+      let count = 0
+      json.forEach(item => (item.category == "men's clothing")? count++: count);
+
+      let count2 = 0
+      json.forEach(item => (item.category == "jewelery")? count2++: count2);
+
+      let count3 = 0
+      json.forEach(item => (item.category == "electronics")? count3++: count3);
+
+      let count4 = 0
+      json.forEach(item => (item.category == "women's clothing")? count4++: count4);
+
+      options.series[0].data = [count, count2, count3, count4]
+
+    })
+    .then(() => {
+      // Display the chart
+      myChart.setOption(options);
+    })
+  // Initialise the echarts instance based on the prepared div
+  let myChart = echarts.init(document.getElementById('main'));
+  </script>
+  
+</body>
+
+</html>

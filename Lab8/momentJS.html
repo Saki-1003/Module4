@@ -1,0 +1,78 @@
+<html>
+<head>
+<title>Moment DateTime Format</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+</head>
+
+<body>
+<h2>1. Calculate the number of days between your birthdate and the current date</h2>
+<div id="question1"></div>
+
+<h2>2. Display the number of years, months, and days between your birthdate and current date</h2>
+<div id="question2"></div>
+
+<h2>3. Given two dates, display the date closest to the current date</h2>
+<div id="question3"></div>
+
+<h2>4. Given two dates, display whether the first date is before or after the second date</h2>
+<div id="question4"></div>
+
+<h2>5. Display the current time in London</h2>
+<div id="question5"></div>
+
+
+<script>
+
+// 1 Calculate the number of days between your birthdate and the current date
+let nowMoment = moment();
+let myBirthDay = moment('1985-10-03')
+let fromBirthToNow = nowMoment.diff(myBirthDay, "days")
+
+document.getElementById('question1').innerHTML = fromBirthToNow;
+
+
+// 2 Display the number of years, months, and days between your birthdate and current date
+let years = nowMoment.diff(myBirthDay, "years")
+myBirthDay.add(years,'years')
+let months = nowMoment.diff(myBirthDay, "months")
+myBirthDay.add(months,'months')
+let days = nowMoment.diff(myBirthDay, "days")
+
+
+document.getElementById('question2').innerHTML = `${years} years ${months} months ${days} days`;
+
+
+// 3. Given two dates, display the date closest to the current date
+let current = moment()
+let date_1 = moment('2015-5-3')
+let date_2 = moment('2010-5-28')
+const diff1 = Math.abs(current.diff(date_1))
+const diff2 = Math.abs(current.diff(date_2))
+
+if(diff1 < diff2) {
+  document.getElementById('question3').innerHTML =`${date_1} is closer to the current date compared to ${date_2}`
+} else {
+  document.getElementById('question3').innerHTML =`${date_2} is closer to the current date compared to ${date_1}`
+}
+
+// 4. Given two dates, display whether the first date is before or after the second date
+
+let date1 = moment('2020-5-3')
+let date2 = moment('2030-5-28')
+
+if(date1 < date2) {
+  document.getElementById('question4').innerHTML =`${date1} is before the ${date2}`
+} else {
+  document.getElementById('question4').innerHTML =`${date1} is after the ${date2}`
+}
+
+// 5. Display the current time in London
+let London = moment().utcOffset(1).format()
+document.getElementById('question5').innerHTML = London
+
+
+</script>
+
+</body>
+</html>

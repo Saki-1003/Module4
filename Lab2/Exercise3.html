@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<style>
+
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #eef5ce;
+  }
+  .container {
+      padding: 10px;
+  }
+
+  .artist-name {
+    font-weight: 600;
+    font-size: 3em;
+    padding: 0 0 10px 0;
+  }
+
+  .portfolio-title {
+    font-weight: 400;
+    font-size: 2em
+  }
+
+</style>
+<body>
+
+  <template id="portfolio-template">
+    <div class="container">
+      <div class="body">
+        <p class="artist-name"></p>
+        <figure class="portfolio">
+          <img class="portfolio-img" src="" alt="">
+          <figcaption class="portfolio-title"></figcaption>
+        </figure>
+      </div>
+    </div>
+  </template>
+
+  <div id="portfolio-list"></div>
+  
+  <script>
+
+      function addPortfolio(name, url, title) {
+        const template = document.getElementById('portfolio-template').content.cloneNode(true)
+        template.querySelector('.artist-name').innerText = name
+        template.querySelector('.portfolio-img').src = url
+        template.querySelector('.portfolio-img').alt = title
+        template.querySelector('.portfolio-title').innerText = title
+        document.querySelector('#portfolio-list').appendChild(template)
+      }
+
+      const artist = {
+        name: "Van Gogh",
+        portfolio: [{title: "portrait" , url:'https://cdn.pixabay.com/photo/2017/03/23/15/54/watercolour-2168706_1280.jpg'}, 
+        {title: "sky", url:'https://media.gettyimages.com/id/544182028/photo/the-starry-night-by-vincent-van-gogh.jpg?s=2048x2048&w=gi&k=20&c=lx9yP6cX_MSIuihdQ7XBYT0KfJA4yLhYl7__5VdMivQ='}
+      ],
+      } 
+
+      let name = artist.name
+      artist.portfolio.forEach(item => addPortfolio(name, item.url, item.title))
+    
+
+   
+
+      
+  </script>
+
+</body>
+</html>

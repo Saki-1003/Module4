@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .news-title {
+      font-size: 25px;
+      font-weight: bold;
+    }
+    .news-id {
+      padding-right: 10px;
+      font-size: 25px;
+      font-weight: bold;
+    }
+    .news-desc {
+      font-size: 20px;
+    }
+
+    label {
+      font-size: 20px;
+      padding-right: 20px;
+    }
+    #news-title-input {
+      width: 300px;
+      height: 20px;
+      margin-bottom: 20px;
+    }
+    textarea {
+      width: 300px;
+      vertical-align: top;
+      margin-bottom: 40px;
+    }
+    button {
+      width: 100px;
+      height: 50px;
+      font-size: 20px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <h2>Post News</h2>
+  <label for="news-title-input">News title</label>
+  <input type="text" id="news-title-input" name="news-title-input"><br>
+  <label for="news-content-input">News content</label>
+  <textarea id="news-content-input" name="news-content-input"></textarea></br>
+  <button type="button" onclick="submitNews()">Submit</button>
+
+  <h1>NEWS</h1>
+
+  <template id="news-template">
+    <div>
+      <span class="news-id"></span>
+      <span class="news-title"></span>
+      <p class="news-desc"></p>
+    </div>
+  </template>
+
+  <div id="news-list"></div>
+  
+  <script>
+    let news = [
+    { id: 1, title: 'Election Results', content: "Newly elected minister..." },
+    { id: 2, title: 'Sporting Success', content: "World Cup winners..." },
+    { id: 3, title: 'Tornado Warning', content: "Residents should prepare..." }
+    ];
+
+    function addNews(id, title, content) {
+      const template = document.querySelector('#news-template').content.cloneNode(true)
+      template.querySelector('.news-title').innerText = title
+      template.querySelector('.news-id').innerText = id
+      template.querySelector('.news-desc').innerText = content
+      document.querySelector('#news-list').appendChild(template)
+    }
+
+    function intervalDeco() {
+      document.querySelector('#news-list').innerHTML = ""
+      news.forEach((item) => {
+      addNews(item.id, item.title, item.content)
+    })
+    }
+
+    setInterval(intervalDeco, 5000)
+
+
+    function submitNews() {
+       submitTitle = document.getElementById('news-title-input').value
+       submitContent = document.getElementById('news-content-input').value
+
+      let newPost = {
+      id: news.length+1,
+      title: submitTitle, 
+      content: submitContent
+      }
+
+      news.push(newPost)
+      }
+
+    
+
+  
+    
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Animation</title>
+</head>
+<style>
+  div {
+    width: 100px;
+    height: 100px;
+    background-color: aqua;
+    border: 1px solid black;
+    animation-name: slide-square;
+    animation-delay: 2s;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+
+  }
+
+  
+  @keyframes slide-square {
+    0% {
+      transform: translateY(0);
+    } 
+    50% {
+      transform: translateY(130%);
+      background-color: rgb(8, 8, 228);
+    }   
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+</style>
+
+<body>
+  <div></div>
+  
+</body>
+</html>
