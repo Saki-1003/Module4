@@ -30,6 +30,32 @@
   
   let categoryArry;
 
+  //This code makes the correct result, but here is a way to do the same thing with less code:
+  /*
+  fetch('https://fakestoreapi.com/products')
+    .then((response) => response.json())
+    .then((json) => {
+      //categories is an object with keys being the category names and values being the
+      //number of products in those categories
+      const categories = {}
+      for (const product of json) {
+        const category = product.category;
+        if (category in categories) {
+          //If a property for this category already exists in the categories object, add 1 to the value
+          categories[category]++
+        } else {
+          //A property for this category does not yet exist in the categories object, so set it to 1
+          categories[category] = 1
+        }
+      }
+
+      options.xAxis.data = Object.keys(categories); //get the category names
+      options.series[0].data = Object.values(categories) //get the number of products in the categories
+
+      myChart.setOption(options) //set the chart data
+    })
+  */
+
 
   fetch('https://fakestoreapi.com/products')
     .then((response) => response.json())
