@@ -45,6 +45,8 @@ document.getElementById('question2').innerHTML = `${years} years ${months} month
 
 // 3. Given two dates, display the date closest to the current date
 let current = moment()
+//These create an invalid date because moment is expecting the format to be YYYY-MM-DD
+//(months and days as 2 digits)
 let date_1 = moment('2015-5-3')
 let date_2 = moment('2010-5-28')
 const diff1 = Math.abs(current.diff(date_1))
@@ -58,6 +60,7 @@ if(diff1 < diff2) {
 
 // 4. Given two dates, display whether the first date is before or after the second date
 
+//Same as up above, moment is expecting the months and days to be 2 digits instead of 1
 let date1 = moment('2020-5-3')
 let date2 = moment('2030-5-28')
 

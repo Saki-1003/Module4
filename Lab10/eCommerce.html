@@ -53,6 +53,11 @@
     json.forEach(item => template(item.title, item.description, item.image, item.price))
     let jsonMap = json.map(item => item.category)
     let categoryArry = Array.from(new Set(jsonMap))
+    //A better way to make the category dropdown is to dynamically add the <option> elements
+    //to the <select> element. The unique categories are in the variable called "categoryArry", so all
+    //that would need to be done would be to create a new <option> element for each of the items
+    //in the array and then set the innerText and value to the category name and add the element to
+    //the page.
     document.getElementById('category1').innerText = categoryArry[0]
     document.getElementById('category2').innerText = categoryArry[1]
     document.getElementById('category3').innerText = categoryArry[2]
